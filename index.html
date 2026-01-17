@@ -37,7 +37,7 @@
   }
 
   .pulse {
-    font-size: 32px;
+    font-size: 40px;  /* Aumentado un poco el tamaño */
     font-weight: bold;
     color: #1db954;
     margin: 20px 0;
@@ -73,13 +73,24 @@
     background: #ff5252;
     color: #000;
   }
+
+  .ad-free-badge {
+  display: inline-block;
+  background: #10b981;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 8px;
+}
 </style>
 </head>
 
 <body>
 <div class="app">
   <h1>Metrónomo</h1>
-  <p style="text-shadow: 0.1em 0.1em 0.15em #e3e4e5">100% Libre de publicidad.</p>
+  <span class="ad-free-badge">✓ 100% libre de publicidad</span>
   <div class="bpm" id="bpmValue">120 BPM</div>
   <input type="range" min="40" max="240" value="120" id="bpmSlider">
 
@@ -166,6 +177,10 @@ function scheduler() {
 }
 
 function start() {
+  // Reiniciar pulso al iniciar
+  currentPulse = 1;  
+  document.getElementById('pulseNumber').textContent = currentPulse;
+
   if (!audioCtx) initAudio();
 
   audioCtx.resume();
